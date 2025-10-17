@@ -23,7 +23,7 @@ library(devtools) # if already installed, otherwise need to install it first
 
 install_github("ajmeryjaman/OSIPeg")
 
-library(OSIPeg)
+library(OSIPeG)
 
 ?osipeg_confint # To follow the example
 
