@@ -21,8 +21,9 @@ osipeg_confint(
 )
 }
 \arguments{
-\item{data}{A data frame containing the variables in longitudinal format. In the data, the
-outcome should be continuous and the treatment/exposure should be binary.}
+\item{data}{A data frame containing the variables in longitudinal format. In the data, the outcome 
+should be continuous and the treatment/exposure should be binary. The data must have an additional 
+column containing the propensity scores.}
 
 \item{wc.str}{A character string specifying the working correlation structure. The
 following are currently allowed: "independence", "exchangeable", "ar1", and "unstructured".}
