@@ -3,7 +3,8 @@
 #' for the blip coefficients selected by penalized G-estimation in the context of a structural nested mean
 #' model (SNMM) for repeated outcomes.
 #' @param data A data frame containing the variables in longitudinal format. In the data, the
-#' outcome should be continuous and the treatment/exposure should be binary.
+#' outcome should be continuous and the treatment/exposure should be binary. The data must have 
+#' an additional column containing the propensity scores.
 #' @param wc.str A character string specifying the working correlation structure. The
 #' following are currently allowed: "independence", "exchangeable", "ar1", and "unstructured".
 #' @param id.var The column name in data that corresponds to the variable id (unique identifier).
