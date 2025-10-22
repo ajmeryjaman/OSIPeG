@@ -58,6 +58,12 @@ effect modifiers that are continuous.}
 }
 \value{
 A list containing the following:
+\item{psi.hat.one.step.full}{A vector showing the one-step improved penalized G-estimates for the selected blip
+coefficients, calculated using the full weight vector.}
+\item{psi.hat.one.step.LASSO}{A vector showing the one-step improved penalized G-estimates for the selected blip
+coefficients, using the sparse weight vector obtained via LASSO.}
+\item{psi.hat.one.step.dantzig}{A vector showing the one-step improved penalized G-estimates for the selected blip
+coefficients, using the sparse weight vector obtained via the Datzig selector.}
 \item{CI.one.step.full}{A matrix showing confidence interval estimates for the selected blip
 coefficients, calculated using the full weight vector.}
 \item{CI.one.step.LASSO}{A matrix showing confidence interval estimates for the selected blip
