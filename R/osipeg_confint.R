@@ -25,6 +25,12 @@
 #' @param continuous.covs A logical vector of TRUE/FALSE values identifying the potential
 #' effect modifiers that are continuous.
 #' @return A list containing the following:
+#' \item{psi.hat.one.step.full}{A vector showing the one-step improved penalized G-estimates for the selected blip
+#' coefficients, calculated using the full weight vector.}
+#' \item{psi.hat.one.step.LASSO}{A vector showing the one-step improved penalized G-estimates for the selected blip
+#' coefficients, using the sparse weight vector obtained via LASSO.}
+#' \item{psi.hat.one.step.dantzig}{A vector showing the one-step improved penalized G-estimates for the selected blip
+#' coefficients, using the sparse weight vector obtained via the Datzig selector.}
 #' \item{CI.one.step.full}{A matrix showing confidence interval estimates for the selected blip
 #' coefficients, calculated using the full weight vector.}
 #' \item{CI.one.step.LASSO}{A matrix showing confidence interval estimates for the selected blip
@@ -217,9 +223,9 @@ osipeg_confint <- function(data, wc.str, id.var, treat.var, response.var, tf.mod
   S.psi.mat <- t(S.psi.mat)
 
   tune.par.opt <- tune.par.opt.dantzig <- NULL
-  psi.hat.decorr.OS <- psi.hat.decorr.OS.LASSO <- psi.hat.decorr.OS.LASSO.refit  <- NULL
-  psi.hat.decorr.OS.dantzig <- NULL
+  psi.hat.decorr.OS <- psi.hat.decorr.OS.LASSO <- psi.hat.decorr.OS.dantzig <- NULL
   CI1 <- CI2 <- CI3 <- NULL
+                      
   for(k in coef.sel){
     I.psi.partial <- c(I.psi[k,k] - I.psi[k,-k]%*%solve(I.psi[-k,-k])%*%I.psi[-k,k])
 
@@ -270,6 +276,8 @@ osipeg_confint <- function(data, wc.str, id.var, treat.var, response.var, tf.mod
   selected.EMs <- colnames(model.matrix(tf.model, data))[M][-1]
   row.names(CI1) <- row.names(CI2) <- row.names(CI3) <- c("a", paste("a*", selected.EMs, sep=""))
 
-  return(list(CI.one.step.full = CI1, CI.one.step.LASSO = CI2, CI.one.step.dantzig = CI3))
+  return(list(psi.hat.one.step.full = psi.hat.decorr.OS, psi.hat.one.step.LASSO =  psi.hat.decorr.OS.LASSO,
+              psi.hat.one.step.dantzig = psi.hat.decorr.OS.dantzig,
+              CI.one.step.full = CI1, CI.one.step.LASSO = CI2, CI.one.step.dantzig = CI3))
 }
 
